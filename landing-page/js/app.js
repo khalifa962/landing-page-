@@ -27,7 +27,7 @@ const allSections = document.querySelectorAll('section');
 const windowHeight = window.innerHeight;
 //define Header as a variable
 const header = document.querySelector('.page__header');
-// To top button
+// top button
 const scrollToTopBtn = document.getElementById("my_btn");
 let scrollTimer = null;
 /**
@@ -43,9 +43,8 @@ function createNavbar(id, name) {
 }
 //check the sec in the viewport
 function isInViewport(elem) {
-    // Get the element top coordinate
+    // Get the element top 
     const topBounding = elem.getBoundingClientRect().top;
-    // 0.4 works good without overlapping sections
     return topBounding < windowHeight * 0.4 && topBounding > windowHeight * -0.6;
 };
 
@@ -86,11 +85,11 @@ function setActiveSection() {
     }
 }
 
-// Scroll to anchor ID using scrollTO event
+// Scroll to anchor using scrollTO event
 function scrollToElement(event) {
-    // Using (nodeName) property to verify target is the desired element
+    // to verify target is the element in the view we use (nodeName) property
     if (event.target.nodeName === 'A') {
-        // Prevent the default action from occurring
+        // prevent the default action from occurring
         event.preventDefault();
         //define the targeted section id
         const sectionId = event.target.getAttribute('data-id');
@@ -109,16 +108,14 @@ function scrollToTop() {
     });
 }
 // Hide fixed navigation bar while not scrolling
-/*
- * Set a timer in scroll event
- * When the timer fire, then it is supposed that scrolling has stopped
- */
 function hideNavbar() {
+   
     if (scrollTimer !== null) {
         // Reset the timer
         clearTimeout(scrollTimer);
         header.classList.remove('hide__header');
     }
+    // Set a timer in scroll event
     scrollTimer = setTimeout(() => {
         // Hide navbar when not scrolling
         header.classList.add('hide__header');
@@ -139,9 +136,8 @@ document.onscroll = setActiveSection();
 navBarList.addEventListener('click', function(event) { scrollToElement(event) });
 //event to scroll to up button 
 scrollToTopBtn.addEventListener("click", scrollToTop)
-    /* scroll using a delay
-     * to reduce the frequency of scrolling events fired
-     */
+    // scroll using a delay
+    
 setTimeout(() => {
     document.addEventListener('scroll', () => {
         // Set sections as active
